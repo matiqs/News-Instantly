@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/inicio.css" /> 
+    <link rel="stylesheet" href="css/header.css" /> 
+    <link rel="stylesheet" href="css/post.css" /> 
+    <!--<link rel="stylesheet" href="../static/css/inicio.css" />-->
+    <link rel="shortcut icon" href="images/logo.png" />
+    <!--<link rel="shortcut icon" href="../static/images/logo.png" />-->
+    <title>News instantly.</title>
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@1,400;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+  	<!--NAVBAR-->
+    <header th:replace="fragments/header :: header"></header>
+    <div class="main-container">
+      <main>
+      <!--PUBLICAR-->
+      <div th:replace="fragments/post :: div"></div>
+        <!--ULTIMAS NOTICIAS-->
+        <section
+          class="last-news-container"
+          th:each="publicacion : ${publicaciones}"
+        >
+          <div class="last-new">
+            <div class="last-new-header">
+              <div class="last-new-info">
+                <div class="profile-avatar last-news-profile-avatar">
+                  <img
+                    th:if="${publicacion.usuario.imagenPerfil == null}"
+                    src="images/avatar-default.png"
+                    alt=""
+                    class="avatar"
+                  />
+                  <img
+                    th:if="${publicacion.usuario.imagenPerfil != null}"
+                    src="images/avatar-default.png"
+                    alt=""
+                    class="avatar"
+                  />
+                </div>
+                <div class="last-new-username">
+                  <p th:text="${publicacion.usuario.nick}"></p>
+                  <p th:text="${publicacion.fechaPublicacion}"></p>
+                </div>
+              </div>
+            </div>
+            <div class="last-new-body">
+              <h1 class="last-new-title" th:text="${publicacion.titulo}"></h1>
+              <img
+                th:if="${publicacion.imagen == null}"
+                src="images/background-login.jpg"
+                alt=""
+                class="last-new-img"
+              />
+              <img
+                th:if="${publicacion.imagen != null}"
+                th:src="${'/imagen-nota/' + publicacion.id}"
+                alt=""
+                class="last-new-img"
+              />
+              <div class="last-new-epigraph">
+                <a
+                  th:href="@{/publicacion/__${publicacion.id}__}"
+                  th:text="${publicacion.resumen}"
+                >
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+  <script src="scripts/fragments.js"></script>
+  <script
+    defer
+    src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+    integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
+    crossorigin="anonymous"
+  ></script>
+</html>

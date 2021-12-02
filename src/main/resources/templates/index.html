@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="css/scrollbar.css">
+	<link rel="stylesheet" href="css/inicio.css" />
+	<link rel="stylesheet" href="css/fragments.css/header.css" />
+	<link rel="stylesheet" href="css/fragments.css/error-succes.css" />
+	<link rel="stylesheet" href="css/fragments.css/post.css" />
+	<link rel="stylesheet" href="css/fragments.css/publication.css" />
+	<link rel="stylesheet" href="css/fragments.css/menu-left.css">
+	<link rel="stylesheet" href="css/fragments.css/menu-right.css">
+	<link rel="stylesheet" href="css/fragments.css/footer.css" />
+	<!--<link rel="stylesheet" href="../static/css/inicio.css" />-->
+	<link rel="shortcut icon" href="images/logo.png" />
+	<!--<link rel="shortcut icon" href="../static/images/logo.png" />-->
+	<title>Inicio | News instantly.</title>
+	<!--Google Fonts-->
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@1,400;1,600;1,700&display=swap"
+		rel="stylesheet" />
+	<!--Font de: TITULO-->
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet" />
+</head>
+
+<body onload="onLoad()">
+	<!--NAVBAR-->
+	<header th:replace="fragments/header :: header"></header>
+	
+	<!--MAIN-->
+	<main class="main">
+		<!--ERROR-->
+		<div th:replace="fragments/error-succes :: div"></div>
+		<!--MENU LEFT-->
+		<div th:replace="fragments/menu-left :: div"></div>
+		<!--MENU RIGHT-->
+		<div th:replace="fragments/menu-right :: div"></div>
+		<!--PUBLICAR-->
+		<div th:replace="fragments/post :: div"></div>
+		<!--ULTIMAS NOTICIAS-->
+		<div class="last-news" th:each="publication : ${publications}">
+			<div th:replace="fragments/publication :: div"></div>
+		</div>
+	</main>
+	<!--FOOTER-->
+	<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+<script src="/scripts/fragments.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+	integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
+	crossorigin="anonymous"></script>
+<script src="/scripts/clima.js"></script>
+
+</html>

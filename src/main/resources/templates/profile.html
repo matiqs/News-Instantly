@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="shortcut icon" href="/images/logo.png" />
+	<title>Perfil | News instantly.</title>
+	<link rel="stylesheet" href="/css/perfil.css" />
+	<link rel="stylesheet" href="/css/scrollbar.css">
+	<link rel="stylesheet" href="/css/fragments.css/header.css" />
+	<link rel="stylesheet" href="/css/fragments.css/error-succes.css" />
+	<link rel="stylesheet" href="/css/fragments.css/post.css" />
+	<link rel="stylesheet" href="/css/fragments.css/publication.css" />
+	<link rel="stylesheet" href="/css/fragments.css/footer.css" />
+	<!--Google Fonts-->
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Krub:wght@200;300;500&display=swap" rel="stylesheet" />
+
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@1,400;1,600;1,700&display=swap"
+		rel="stylesheet" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+	<!--NAVBAR-->
+	<header th:replace="fragments/header :: header"></header>
+	<!--ERROR-->
+	<div th:replace="fragments/error-succes :: div"></div>
+	<!--  perfil -->
+	<section class="user-profile-container">
+		<div class="user-profile">
+			<img th:if="${user.imagenPortada != null}" class="user-profile-cover"
+				th:src="${'/imagen/portada/' + user.email}" alt="" />
+			<img th:if="${user.imagenPortada == null}" class="user-profile-cover"
+				src="/images/portada-default.jpg" alt="" />
+			<div class="user-profile-avatar">
+				<img th:if="${user.imagenPerfil != null}" class="user-avatar"
+					th:src="${'/imagen/perfil/' + user.email}" alt="" />
+				<img th:if="${user.imagenPerfil == null}" class="user-avatar"
+					src="/images/avatar-default.png" alt="" />
+				<p class="username" th:text="${user.nick}"></p>
+				<p class="username-email" th:text="${user.email}"></p>
+				<button class="user-profile-more-btn" onclick="showMoreInfo()">Mas informacion</button>
+			</div>
+			<div class="profile-config-container">
+				<a sec:authorize="isAuthenticated()" th:if="${session.user.email == user.email}"
+					th:href="@{/perfil/modificar/__${user.email}__}"><button type="button"
+						class="edit-profile-btn">EDITAR PERFIL</button></a>
+				<a sec:authorize="hasRole('ROLE_USER')" th:if="${session.user.email != user.email}"
+					th:href="@{/perfil/denunciar/__${user.email}__}"><button type="button"
+						class="edit-profile-btn report">DENUNCIAR</button></a>
+				<a sec:authorize="hasRole('ROLE_ADMIN')" th:if="${user.alta == true}"
+					th:href="@{/perfil/ban/__${user.email}__}"><button type="button"
+						class="edit-profile-btn report">DAR DE BAJA</button></a>
+				<a a sec:authorize="hasRole('ROLE_ADMIN')" th:if="${user.alta == false}"
+					th:href="@{/perfil/ban/__${user.email}__}"><button type="button"
+						class="edit-profile-btn report">DAR DE ALTA</button></a>
+			</div>
+		</div>
+	</section>
+	<section class="profile-info-container hidden">
+		<div class="profile-info">
+			<div class="profile-info-title">
+				<p>Informacion del usuario</p>
+			</div>
+			<div class="profile-data-container">
+				<div class="profile-data">
+					<div class="profile-data-option">
+						<p>Nombre de usuario:
+						<p>
+						<p th:text="${user.nick}" class="data-option"></p>
+					</div>
+					<div class="profile-data-option">
+						<p>Nombre:
+						<p>
+						<p th:text="${user.nombre}" class="data-option"></p>
+					</div>
+					<div class="profile-data-option">
+						<p>Apellido:
+						<p>
+						<p th:text="${user.apellido}" class="data-option"></p>
+					</div>
+				</div>
+				<div class="profile-data">
+					<div class="profile-data-option">
+						<p>Email:
+						<p>
+						<p th:text="${user.email}" class="data-option"></p>
+					</div>
+					<div class="profile-data-option">
+						<p>Fecha de nacimiento:
+						<p>
+						<p th:text="${#dates.format(user.fechaNacimiento,'yyyy-MM-dd')}" class="data-option"></p>
+					</div>
+					<div class="profile-data-option">
+						<p>Publicaciones:
+						<p>
+						<p th:text="${user.publicaciones.size()}" class="data-option"></p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+	<main>
+		<!--PUBLICAR-->
+		<div sec:authorize="isAuthenticated()" th:if="${session.user.email == user.email}" >
+		<div th:replace="fragments/post :: div"></div>
+		</div>
+		<!--ULTIMAS NOTICIAS-->
+		<div class="last-news" th:each="publication : ${publications}">
+			<div th:replace="fragments/publication :: div"></div>
+		</div>
+		<footer th:replace="fragments/footer :: footer"></footer>
+	</main>
+
+</body>
+<script src="/scripts/perfil.js"></script>
+<script src="/scripts/fragments.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+	integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
+	crossorigin="anonymous"></script>
+
+</html>

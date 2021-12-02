@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/login.css" />
+    <link rel="shortcut icon" href="/images/logo.png" />
+    <title>Ingresar | News instantly.</title>
+  </head>
+  <body>
+    <header>
+    <h1 th:text="'Hola ' + ${session.user.nick}"></h1>
+    </header>
+  </body>
+  <div>
+  <h1>News Instantly</h1>
+  </div>
+  <h2>Guardar Publicacion</h2>
+  <div>
+  <form th:action="@{/publicacion/publicar}" method="post" enctype="multipart/form-data">
+  <input type="hidden" name="email" th:value="${session.user.email}"/>
+  <input type="text" placeholder="Titulo" name="titulo" th:value="${titutlo}"/><br>
+  <textarea placeholder="Escriba el apigrafo" name="epigraphy" rows="4" cols="40" th:value="${epigraphy}"></textarea><br>
+  <textarea placeholder="Escriba la nota" name="nota" rows="10" cols="40" th:value="${nota}"></textarea><br>
+  <input id="file-upload" type="file" class="new-file new-box" name="archivo"/>
+  <button type="submit" class="btn btn-primary">Subir nota</button>
+  </form>
+  </div>
+  <h2>Publicaciones</h2>
+  <div>
+    <table class="table">
+        <tr th:each="publicacion : ${publicaciones}">
+        <td><a th:text="${publicacion.titulo}" th:href="@{publicacion/__${publicacion.id}__}"></a></td>
+        <td th:text="'Escrita por ' + ${publicacion.usuario.nick}" style="color: red;"></td>
+        <td><button type="button" class="btn btn-primary"><a th:href="@{publicacion/eliminar/__${publicacion.id}__}">X</a></button></td>
+        </tr>
+    </table>
+  </div>
+</html>

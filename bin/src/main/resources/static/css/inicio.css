@@ -1,0 +1,152 @@
+:root {
+  /* PALETA DE COLORES */
+  --negro: #111;
+  --blanco: #fff;
+  --gris_placeholder: #aaa;
+  --gris_suave0: #ccc;
+  --gris_suave1: #ddd;
+  --gris_suave2: #eee;
+  --gris_letra: #666;
+  --gris_barra: #333;
+  --rojo: #ec3535;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.profile-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  cursor: pointer;
+  background: #333;
+}
+
+.avatar {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 1px;
+}
+
+body {
+  background: var(--negro);
+  font-family: "Roboto", sans-serif;
+}
+
+
+/*MAIN*/
+.main-container {
+  margin-top: 74px;
+}
+
+
+/* ================== ULTIMAS NOTICIAS =================== */
+.last-new {
+  padding: 14px;
+  border-radius: 18px;
+  background-color: var(--gris_suave2);
+  height: 662px;
+  width: 40%;
+  margin: auto;
+  margin-bottom: 14px;
+}
+
+.last-new-header {
+  padding: 4px;
+  margin-bottom: 2px;
+  background-color: #333;
+  border-bottom: 1px solid #ddd;
+}
+
+.last-new-info {
+  color: #fff;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.last-news-profile-avatar {
+  margin: 4px 14px;
+}
+
+.last-new-body {
+  height: 450px;
+  background-color: #ddd;
+}
+
+.last-new-title {
+  background-color: #333;
+  color: #ddd;
+  font-weight: 500;
+  font-size: 30px;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.last-new-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.last-new-epigraph {
+  padding: 12px 10px;
+  width: 100%;
+  background-color: rgba(51, 51, 51, 0.808);
+  position: relative;
+  bottom: 98px;
+}
+.last-new-epigraph a {
+  color: #ddd;
+  font-size: 22px;
+  text-decoration: none;
+}
+.last-new-epigraph a:hover {
+  text-decoration: underline;
+}
+/* ================== PIE DE PAGINA =================== */
+.footer {
+  background: #a5a5a5;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+/* ================== MEDIA QUERIES =================== */
+@media (max-width: 767px) {
+  .logo {
+    padding-top: 40px;
+    padding-left: 20px;
+  }
+  .title {
+    display: none;
+  }
+  .menu-icon {
+    display: block;
+    padding-right: 40px;
+    cursor: pointer;
+  }
+  .navigation {
+    width: 100%;
+    margin: 1rem;
+  }
+  .navigation ul {
+    display: none;
+  }
+  .navigation ul.show {
+    display: block;
+  }
+  .navigation ul li {
+    display: block;
+  }
+  .navigation ul li a {
+    display: block;
+    padding: 0.5rem 3.5rem;
+    transition: all 0.4s linear;
+  }
+}

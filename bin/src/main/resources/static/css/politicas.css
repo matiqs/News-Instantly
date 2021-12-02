@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Krub", serif;
+  text-align: justify;
+}
+
+.politicas-background {
+  background-image: url("/src/main/resources/static/images/background-login.jpg");
+  background-size: cover;
+  background-position:top;
+  height: 100%; 
+  width: 100%;
+}
+
+.politicas-container {  
+  position: sticky;
+  margin: 5% 15%;
+  background: rgba(238, 238, 238, 0.76);
+  padding: 20px 30px;
+  border-radius: 20px;
+}
+
+h1{
+  margin-bottom: 10px;
+}
+h2{
+  margin: 10px 0;
+}
+.items{
+  margin-left: 20px;
+}

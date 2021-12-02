@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/login.css" />  <!-- /src/main/resources/static/css/login.css -->
+    <link rel="shortcut icon" href="/images/logo.png" /> <!-- /src/main/resources/static/images/logo.png -->
+    <title>Ingresar | News instantly.</title>
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Krub:wght@200;300;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@1,400;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="login-form-bg"></div>
+      <div class="login-form-container">
+        <div class="login-form-logo">
+          <img src="/images/logo.png" alt="" class="logo" /> <!-- /src/main/resources/static/images/logo.png -->
+          <h1 class="title">News <span>Instantly.</span></h1>
+        </div>
+        <div th:if="${error != null}">
+          <p th:text="${error}"></p>
+        </div>
+        <div th:if="${success != null}">
+          <p th:text="${success}"></p>
+        </div>
+        <form th:action="@{/logincheck}" class="login-form" method="POST">
+          <div class="login-form-input">
+            <label for="">Email</label>
+            <input type="text" placeholder="Email de usuario" name="email" />
+          </div>
+          <div class="login-form-input">
+            <label for="">Contraseña</label>
+            <input
+              type="password"
+              name="password"
+              pattern="[A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9]*"
+              title="La contraseña es incorrecta"
+              required
+              placeholder="Contraseña"
+            />
+          </div>
+          <div class="login-form-input">
+            <button type="submit" class="login-btn">Ingresar</button>
+          </div>
+          <a th:href="@{/recuperar-clave}" class="login-form-link"
+            >¿Olvidaste tu contraseña?</a
+          >
+        </form>
+        <div class="create-account">
+          <p>¿Aun no te has registrado?</p>
+          <div class="login-form-input">
+            <button type="button" class="login-btn register-btn">
+              <a th:href="@{/register}"> Registrarme </a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

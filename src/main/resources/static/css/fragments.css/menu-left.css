@@ -1,0 +1,262 @@
+.menu-left-container{
+	border-radius: 14px;
+	width: 26vw;
+	position: fixed;
+    top: 82px;
+    left:1.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu-left-content{
+	height: auto;
+	background-color: #fff;
+	border-radius: 14px;
+	box-shadow: 5px 5px 10px #000;
+}
+
+.prueba-gif{
+	width: 100%;
+	padding: 5px;
+	border-radius: 14px;
+}
+
+
+.climate-container{
+	overflow: hidden;
+	background-color: #fff;
+	border-radius: 14px;
+	margin-bottom: 14px;
+	box-shadow: 5px 5px 10px #000;
+}
+
+.climate-icon-container{
+	border-radius: 50%;
+	display: flex;
+}
+
+
+.climate-icon{
+	object-fit: cover;
+	width:55%;
+	padding: 0;
+}
+
+
+.climate {
+	display: flex;
+    padding: 20px;
+    color: #000;
+}
+
+.block {
+	width: 50%;
+}
+
+.climate-image{
+	background-image: url("/images/background-climate.jpg");
+	background-position: center;
+	background-size: cover;
+}
+
+.climate > .block {
+    padding: 20px;
+}
+
+.climate-info{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.block:first-child {
+ background-color: #2A3D45;
+ color: #fff;
+ text-shadow: 1px 1px 1px #000;
+}
+
+.information-container {
+	font-size: 1.2vw;
+    display: flex;
+}
+
+.information {
+    margin-left: 5px;
+}
+
+#location {
+    font-weight: bold;
+    font-size:1.6vw;  
+}
+
+#date{
+	font-size:1.2vw;  
+}
+
+
+
+
+.loader,
+.loader:before,
+.loader:after {
+  border-radius: 50%;
+}
+.loader {
+  color: #DDC9B4;
+  font-size: 11px;
+  text-indent: -99999em;
+  position: relative;
+  width: 10em;
+  height: 10em;
+  box-shadow: inset 0 0 0 1em;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.loader:before,
+.loader:after {
+  position: absolute;
+  content: '';
+}
+.loader:before {
+  width: 5.2em;
+  height: 10.2em;
+  background: #2A3D45;
+  border-radius: 10.2em 0 0 10.2em;
+  top: -0.1em;
+  left: -0.1em;
+  -webkit-transform-origin: 5.1em 5.1em;
+  transform-origin: 5.1em 5.1em;
+  -webkit-animation: load2 2s infinite ease 1.5s;
+  animation: load2 2s infinite ease 1.5s;
+}
+.loader:after {
+  width: 5.2em;
+  height: 10.2em;
+  background: #2A3D45;
+  border-radius: 0 10.2em 10.2em 0;
+  top: -0.1em;
+  left: 4.9em;
+  -webkit-transform-origin: 0.1em 5.1em;
+  transform-origin: 0.1em 5.1em;
+  -webkit-animation: load2 2s infinite ease;
+  animation: load2 2s infinite ease;
+}
+
+
+
+
+@-webkit-keyframes load2 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load2 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+
+.menu-left-slider{
+	overflow: hidden;
+	height: 260px;
+	width: 100%;
+}
+
+.menu-left-slider ul{
+	animation: slide 14s infinite alternate ease-in-out;
+	display: flex;
+	padding: 0;
+	height: 100%;
+	width: 400%;
+}
+
+.menu-left-slider li{
+	list-style: none;
+	height: 100%;
+	width: 100%;
+}
+
+.menu-left-slider img{
+	padding: 14px;
+	object-fit: contain;
+	height: 100%;
+	width: 100%;
+}
+
+
+@keyframes slide {
+	0% {margin-left: 0%;}
+    20% {margin-left: 0%;}
+
+    25% {margin-left: -100%;}
+    45% {margin-left: -100%;}
+
+    50% {margin-left: -200%;}
+    70% {margin-left: -200%;}
+
+    75% {margin-left: -300%;}
+    100% {margin-left: -300%;}
+	
+}
+
+@media screen and (max-width: 1240px) {
+	.climate-container{
+		overflow: hidden;
+		background-color: #fff;
+		border-radius: 14px;
+		margin-bottom: 14px;
+		box-shadow: 5px 5px 10px #000;
+	}
+
+	.climate-icon{
+		width:40%;
+	}
+	
+	.climate {
+		padding: 10px;
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.block {
+		width: 100%;
+	}
+
+	.climate > .block {
+	    padding: 10px;
+	}
+
+	#location {
+	    font-weight: bold;
+	    font-size:2.2vw;  
+	}
+
+	#date{
+		font-size:1.4vw;  
+	}
+
+	.information-container {
+		font-size: 1.5vw;
+	    display: flex;
+	}
+	
+}
+
+@media screen and (max-width: 768px){
+	.menu-left-container{
+		display:none;
+	}
+}

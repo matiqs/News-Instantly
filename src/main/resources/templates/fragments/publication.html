@@ -1,0 +1,57 @@
+<div class="last-news-container">
+	<div class="last-new">
+		<div class="last-new-header">
+			<div class="last-new-info-container">
+				<div class="last-new-info">
+					<div class="profile-avatar last-news-profile-avatar">
+						<img th:if="${publication.usuario.imagenPerfil == null}" src="/images/avatar-default.png" alt=""
+							class="avatar" />
+						<img th:if="${publication.usuario.imagenPerfil != null}"
+							th:src="${'/imagen/perfil/' + publication.usuario.email}" alt="" class="avatar" />
+					</div>
+					<div class="last-new-username">
+						<p th:text="${publication.usuario.nick}"></p>
+						<p th:text="${#dates.format(publication.fechaPublicacion,'yyyy-MM-dd HH:mm') + 'hs'}"></p>
+					</div>
+				</div>
+				<div sec:authorize="isAuthenticated()" class="last-new-dropdown-container">
+					<div class="last-new-dropdown-icon" onclick="showLastNewDropdown(event)"></div>
+					<div class="last-new-dropdown hidden">
+						<ul class="last-new-dropdown-menu">
+							<li sec:authorize="hasRole('ROLE_USER')" th:if="${session.user.email != publication.usuario.email}"
+								class="last-new-dropdown-menu-option">
+								<a  th:href="@{/publicacion/denunciar/__${publication.id}__}" class="delete">Denunciar</a>
+							</li>
+							<li sec:authorize="hasRole('ROLE_USER')" th:if="${session.user.email == publication.usuario.email}"
+								class="last-new-dropdown-menu-option">
+								<a th:href="@{/publicacion/eliminar/__${publication.id}__}" class="delete">Eliminar</a>
+							</li>
+							<li sec:authorize="hasRole('ROLE_ADMIN')"
+								class="last-new-dropdown-menu-option">
+								<a th:href="@{/publicacion/eliminar/__${publication.id}__}">Eliminar</a>
+							</li>
+							<li class="last-new-dropdown-menu-option">
+								<a th:href="@{/publicacion/__${publication.id}__}">Ver publicación</a>
+							</li>
+							<li class="last-new-dropdown-menu-option">
+								<a onclick="hiddenLastNewDropdown(event)">Cancelar</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="last-new-body">
+			<div class="last-new-title">
+				<h1 th:text="${publication.titulo}"></h1>
+			</div>
+			<img th:if="${publication.imagen == null}" src="/images/background-login.jpg" alt="" class="last-new-img" />
+			<img th:if="${publication.imagen != null}" th:src="${'/imagen/publicacion/' + publication.id}" alt=""
+				class="last-new-img" />
+		</div>
+		<div class="last-new-epigraph">
+			<a th:href="@{/publicacion/__${publication.id}__}" th:text="${publication.resumen}">
+			</a>
+		</div>
+	</div>
+</div>

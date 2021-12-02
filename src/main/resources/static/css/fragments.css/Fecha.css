@@ -1,0 +1,85 @@
+:root {
+  /* PALETA DE COLORES */
+  --negro: #111;
+  --blanco: #fff;
+  --gris_placeholder: #aaa;
+  --gris_suave0: #ccc;
+  --gris_suave1: #ddd;
+  --gris_suave2: #eee;
+  --gris_letra: #666;
+  --gris_barra: #333;
+  --rojo: #ec3535;
+}
+
+.input-register {
+  font-size: 20px;
+  text-transform: capitalize;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 6px;
+  width: 600px;
+  margin: 0 auto;
+}
+.input-register label {
+  font-family: "Roboto", sans-serif;
+  padding-bottom: 10px;
+}
+
+.input-register input {
+  border: 1px solid var(--gris_suave1);
+  padding: 6px;
+  width: 100%;
+}
+
+.input-register-double {
+  text-transform: capitalize;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  width: 600px;
+  margin: 0 auto;
+
+}
+
+.input-register-title {
+  display: flex;
+  flex-direction: column;
+  width: 49%;
+  text-align: center;
+}
+
+.input-register-title input {
+  border: 1px solid var(--gris_suave1);
+  padding: 6px;
+  width: 100%;
+}
+
+.input-register {
+  display: flex;
+}
+
+.input-register-date {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 40px;
+
+}
+
+.select-register-date {
+  padding: 3px;
+  color: var(--negro);
+  font-size: 1x;
+  width: 32%;
+  font-size: 25px;
+  background:   white;
+
+}
+
+.select-register-date:focus {
+  color: var(--negro);
+  transition: 0.5s;
+}

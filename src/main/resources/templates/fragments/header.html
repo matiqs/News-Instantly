@@ -1,0 +1,72 @@
+<header class="header">
+	<nav class="navbar-container">
+	    <a th:href="@{/inicio}" class="navbar-logo-link">
+	        <div class="navbar-logo-container" >
+	          	<img class="navbar-logo" src="/images/logo.png" alt="" />
+	          	<h1 class="navbar-title">News Instantly.</h1>
+	        </div>
+        </a>
+        <div>
+          <div sec:authorize="isAuthenticated()" class="profile-avatar navbar-profile-avatar">
+	          <img
+	          th:if="${session.user.imagenPerfil != null }"
+	            class="avatar"
+	            th:src="${'/imagen/perfil/' + session.user.email}"
+	            onclick="showDropdown()"
+	          />
+	          <img
+	            th:if="${session.user.imagenPerfil == null }"
+	            class="avatar"
+	            src="/images/avatar-default.png"
+	            onclick="showDropdown()"
+	          />
+          </div>
+          <div sec:authorize="!isAuthenticated()" class="profile-avatar navbar-profile-avatar">
+	          <img
+	            class="avatar"
+	            src="/images/avatar-default.png"
+	            onclick="showDropdown()"
+	          />
+          </div>
+        </div>
+        <div class="dropdown hidden">
+          <div class="close-dopdown">
+            <a href="" onclick="showDropdown()"
+              ><i class="fas fa-times dopdown-icon"></i
+            ></a>
+          </div>
+          <div sec:authorize="isAuthenticated()">
+          <ul class="dopdown-menu">
+            <li class="dropdown-menu-option profile-option">
+              <i class="fas fa-user dopdown-icon"></i>
+              <a  th:href="@{/perfil/__${session.user.nick}__}">Mi perfil</a>
+            </li>
+            <li class="dropdown-menu-option">
+              <i class="fas fa-cog dopdown-icon"></i>
+              <a th:href="@{/perfil/modificar/__${session.user.email}__}">Ajustes</a>
+            </li>
+            <li class="dropdown-menu-option getout-option">
+              <i class="fas fa-sign-out-alt dopdown-icon"></i>
+              <a th:href="@{/logout}">Cerrar sesion</a>
+            </li>
+          </ul>
+          </div>
+          <!-- acomodar las opciones cuando hay un usuario no logeado -->
+          <div sec:authorize="!isAuthenticated()">
+          <ul class="dopdown-menu">
+            <li class="dropdown-menu-option getout-option">
+              <i class="fas fa-sign-out-alt dopdown-icon"></i>
+              <a th:href="@{/}">Iniciar sesion</a>
+            </li>
+            <li class="dropdown-menu-option getout-option">
+              <i class="fas fa-sign-out-alt dopdown-icon"></i>
+              <a th:href="@{/register}">Crear cuenta</a>
+            </li>
+            </ul>
+          </div>
+        </div>
+        <div class="navbar-menu-icon" onclick="showDropdown()">
+			<i class="fas fa-bars"></i>
+		</div>
+      </nav>
+</header>

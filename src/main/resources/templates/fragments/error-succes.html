@@ -1,0 +1,13 @@
+<div th:if="${error!=null}" class="error-container">
+	<div class="error-icon-container">
+		<i class="fas fa-times succes-error-icon" onclick="hiddenError()"></i>
+	</div>
+	<p th:if="${error!=null}" th:text="${error}"></p>
+</div>
+
+<div th:if="${success!=null}" class="succes-container">
+	<div class="succes-icon-container">
+		<i class="fas fa-times succes-error-icon" onclick="hiddenSucces()"></i>
+	</div>
+	<p th:if="${success!=null}" th:text="${success}"></p>
+</div>

@@ -1,0 +1,48 @@
+.error-container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 500;
+	position: fixed;
+	top: 72px;
+	height: 50px;
+	width: 100%;
+	background-color: #ec3535c8;
+	color: #fff;
+}
+
+.succes-container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 500;
+	position: fixed;
+	top: 72px;
+	height: 50px;
+	width: 100%;
+	background-color: #48E51Ac8;
+	color: #fff;
+}
+
+.error-icon-container{
+	width:100%;
+	display:flex;
+	justify-content: flex-end;
+	position: absolute;
+}
+
+.succes-icon-container{
+	width:100%;
+	display:flex;
+	justify-content: flex-end;
+	position: absolute;
+}
+
+.succes-error-icon{
+	cursor: pointer;
+	margin-right: 50px;
+}
+
+.hidden{
+	display: none;
+}

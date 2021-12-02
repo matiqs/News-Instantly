@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/scrollbar.css">
+    <link rel="stylesheet" href="/css/editarPerfil.css" />
+    <link rel="stylesheet" href="/css/fragments.css/error-succes.css" />
+    <link rel="stylesheet" href="/css/fragments.css/header.css" />
+    <link rel="stylesheet" href="/css/fragments.css/Fecha.css" />
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@1,400;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <!--Font de: TITULO-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap"
+      rel="stylesheet"
+    />
+     <link rel="shortcut icon" href="/images/logo.png" />
+    <title>EditarPerfil | News instantly.</title>
+  </head>
+
+  <body class="general">
+  	<header th:replace="/fragments/header :: header"></header> 
+  	<!--ERROR-->
+  	<main class="general main">
+	<div th:replace="fragments/error-succes :: div"></div>
+    <div class="general container">		
+      <div class="general container-2">
+        <div class="general">
+          <form
+            class="general profile-options"
+            th:action="@{/perfil/modificar-perfil/__${email}__}"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+            <div class="general solo">
+              <div class="general cover-div">
+                <img
+                  th:if="${user.imagenPortada == null}"
+                  class="general cover"
+                  src="/images/portada-default.jpg "
+                  alt=""
+                />
+                <img
+                  th:if="${user.imagenPortada != null}"
+                  class="general cover"
+                  th:src="${'/imagen/portada/' + user.email}"
+                  alt=""
+                />
+              </div>
+              <div class="general profile-div">
+                <div class="general pic-profile">
+                  <img
+                    th:if="${user.imagenPerfil != null}"
+                    class="general profile"
+                    th:src="${'/imagen/perfil/' + user.email}"
+                    alt=""
+                  />
+                  <img
+                    th:if="${user.imagenPerfil == null}"
+                    class="general profile"
+                    src="/images/avatar-default.png"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="general title-1">
+              <div class="general title2">
+                <h2><span class="font-family"> opciones de perfil </span></h2>
+              </div>
+            </div>
+
+            <div class="general imgs">
+              <div class="general imgs-input">
+                <label for="" class="font-family">Foto de perfil</label>
+                <input type="file" name="profilePhoto" />
+              </div>
+              <div class="general imgs-input">
+                <label for="" class="font-family">Foto de portada</label>
+                <input type="file" name="coverPhoto" />
+              </div>
+            </div>
+
+            <div class="general margin">
+              <div class="general inputs a">
+                <label for="" class="font-family">Nick</label>
+                <input
+                  type="text"
+                  placeholder="Nick"
+                  name="nick"
+                  th:value="${user.nick}"
+                />
+              </div>
+              <div class="general line-3"></div>
+              <div class="general config">
+                <div class="general inputs config">
+                  <label for="" class="font-family">Nombre</label>
+                  <input
+                    type="text"
+                    placeholder="Nombre"
+                    name="name"
+                    th:value="${user.nombre}"
+                  />
+                </div>
+
+                <div class="general inputs config">
+                  <label for="" class="font-family">Apellido</label>
+                  <input
+                    type="text"
+                    placeholder="Apellido"
+                    name="lastName"
+                    th:value="${user.apellido}"
+                  />
+                </div>
+              </div>
+
+              <div class="general line-3"></div>
+
+              <div th:replace="fragments/Fecha :: div"></div>
+
+              <div class="general save">
+                <div class="general flex-end">
+                  <button class="general button">
+                    <span class="general">Guardar</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="general line"></div>
+          <div class="general title">
+            <div class="general title-2 coop">
+              <div class="general title-2">
+                <h2>
+                  <span
+                    class="cursor font-family"
+                    onclick="viewAdvancedConfig()"
+                    >Configuracion avanzada</span
+                  >
+                </h2>
+
+                <div class="general Advanced-configuration hidden">
+                  <div class="general title-2">
+                    <h3>
+                      <span class="cursor font-family" onclick="viewPassword()"
+                        >Cambiar contraseña</span
+                      >
+                    </h3>
+
+                    <form
+                      th:action="@{/perfil/modificar-password/__${email}__}"
+                      method="POST"
+                      class="form-1 general hidden"
+                    >
+                      <div class="general inputs-1">
+                        <label for="" class="font-family"
+                          >Colocar contraseña actual</label
+                        >
+                        <input
+                          type="password"
+                          placeholder="Contraseña actual"
+                          name="lastPassword"
+                        />
+                        <a th:href="@{/email-recuperacion}" class="general">
+                          <span class="general span-password font-family">
+                            ¿olvidaste tu contraseña?
+                          </span>
+                        </a>
+                      </div>
+                      <div class="general line-4"></div>
+                      <div class="general inputs-2">
+                        <label for="" class="font-family"
+                          >Colocar nueva contraseña</label
+                        >
+                        <input
+                          type="password"
+                          placeholder="Nueva contraseña"
+                          name="password"
+                        />
+                      </div>
+
+                      <div class="general inputs-2 padding">
+                        <label for="" class="font-family"
+                          >Confirmar contraseña</label
+                        >
+                        <input
+                          type="password"
+                          placeholder="Confirmar contraseña"
+                          name="confirmPassword"
+                        />
+                      </div>
+                      <div class="general save-2">
+                        <div class="general flex-end-2">
+                          <button class="general button-2">
+                            <span class="general">Guardar</span>
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="general line-1"></div>
+                  <div class="general title-2">
+                    <h3>
+                      <span class="cursor font-family" onclick="viewDelete()"
+                        >Eliminar cuenta</span
+                      >
+                    </h3>
+
+                    <form
+                      th:action="@{/perfil/eliminar/__${email}__}"
+                      class="form-2 general hidden"
+                      method="POST"
+                    >
+                      <div class="general inputs-1">
+                        <label for="" class="font-family"
+                          >Colocar contraseña actual</label
+                        >
+                        <input
+                          type="password"
+                          placeholder="Contraseña"
+                          name="password"
+                        />
+                        <a th:href="@{/email-recuperacion}" class="general">
+                          <span class="general span-password font-family">
+                            ¿olvidaste tu contraseña?
+                          </span>
+                        </a>
+                      </div>
+
+                      <div class="general delete">
+                        <div class="general flex-end-detele">
+                          <button class="general button-delete">
+                            <span class="general font-family">Eliminar</span>
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  	</main>
+  </body>
+  <script
+    defer
+    src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+    integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
+    crossorigin="anonymous"
+  ></script>
+  <script src="/scripts/editarPerfil.js"></script>
+  <script src="/scripts/fragments.js"></script>
+</html>

@@ -1,0 +1,57 @@
+<header class="header">
+	<nav class="navbar-container">
+        <div class="navbar-logo-container">
+          <img href="#" class="navbar-logo" src="/images/logo.png" alt="" />
+          <!-- src="../static/images/logo.png" -->
+          <h1 class="navbar-title">News <span>Instantly.</span></h1>
+        </div>
+        <div class="navbar-menu-icon">
+          <i class="fas fa-align-justify"></i>
+        </div>
+        <div class="navbar-search-section">
+          <input type="text" placeholder="Buscar" required />
+          <div class="navbar-search-section-icon">
+            <i class="fas fa-search"></i>
+          </div>
+        </div>
+        <div class="profile-avatar navbar-profile-avatar">
+          <img
+          th:if="${session.user.imagenPerfil != null }"
+            class="avatar"
+            src="/images/pana.jpg"
+            onclick="showDropdown()"
+          />
+          <img
+            th:if="${session.user.imagenPerfil == null }"
+            class="avatar"
+            src="/images/pana.jpg"
+            onclick="showDropdown()"
+          />
+        </div>
+        <div class="dropdown hidden">
+          <div class="close-dopdown">
+            <a href="" onclick="showDropdown()"
+              ><i class="fas fa-times dopdown-icon"></i
+            ></a>
+          </div>
+          <ul class="dopdown-menu">
+            <li class="dropdown-menu-option profile-option">
+              <i class="fas fa-user dopdown-icon"></i>
+              <a href="">Mi perfil</a>
+            </li>
+            <li class="dropdown-menu-option">
+              <i class="far fa-newspaper dopdown-icon"></i>
+              <a href="">Mis noticias</a>
+            </li>
+            <li class="dropdown-menu-option">
+              <i class="fas fa-cog dopdown-icon"></i>
+              <a href="">Ajustes</a>
+            </li>
+            <li class="dropdown-menu-option getout-option">
+              <i class="fas fa-sign-out-alt dopdown-icon"></i>
+              <a href="">Cerrar sesion</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+</header>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/css/scrollbar.css">
+<link rel="stylesheet" href="/css/pruebaLeerPublicacion.css" />
+<link rel="stylesheet" href="/css/fragments.css/header.css" /> 
+<link rel="stylesheet" href="/css/fragments.css/footer.css" />
+<link rel="shortcut icon" href="/images/logo.png" />
+<!--Google fonts-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@1,400;1,600;1,700&display=swap"rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;900&display=swap"rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Chonburi&display=swap" rel="stylesheet">
+<title>LeerPublicacion | News instantly.</title>
+</head>
+<body>
+	<!--NAVBAR-->
+    <header th:replace="fragments/header :: header"></header>
+	<!--NOTICIA-->
+	<div class="main-container">
+		<main>
+			<article class="publication-container">
+				<div class="publication">
+					<div class="publication-header">
+					<!--ICONO DE MENU NO TOCAR-->
+					<div class="publication-menu-icon-container">
+						<div class="publication-menu-icon" onclick="viewPublicationMenu()"></div>
+					</div>
+					<!--|||||||||||||||-->
+						<h1 class="publication-title" th:text="${publication.titulo}"></h1>
+						<p class="publication-epigraph" th:text="${publication.resumen}"></p>
+					</div>
+					
+					<div class="publication-body">
+						<div class="publication-user-info">
+							<div class="profile-avatar">
+								<img class="avatar" th:if="${publication.usuario.imagenPerfil != null}" th:src="${'/imagen/perfil/' + publication.usuario.email}" alt="">
+								<img class="avatar" th:if="${publication.usuario.imagenPerfil == null}" src="/images/avatar-default.png" alt="">
+							</div>	
+							<div class="publication-username-date">
+								<p class="publication-username" th:text="'Escrito por: ' + ${publication.usuario.nick}"></p>
+								<div class="publication-date">
+									<i class="far fa-clock"></i>
+									<p th:text="${#dates.format(publication.fechaPublicacion,'yyyy-MM-dd HH:mm') + 'hs'}"></p>
+								</div>
+							</div>
+						</div>
+						<div class="publication-photo-container">
+							<img class="publication-photo" th:if="${publication.imagen != null}" th:src="${'/imagen/publicacion/' + publication.id}">
+						</div>
+						<div class="note">
+							<p th:each="body : ${bodyPublication}" th:text="${body}"></p>
+						</div>
+					</div>
+				</div>
+			</article>
+			<div class="publication-menu">
+				<div class="publication-menu-bg"></div>
+			</div>
+		</main>
+		<div class="publication-menu-container hidden">
+			<div class="publication-menu">
+				<div sec:authorize="hasRole('ROLE_USER')" th:if="${session.user.email != publication.usuario.email}" class="publication-menu-option">
+					<a th:href="@{/publicacion/denunciar/__${publication.id}__}"class="delete">DENUNCIAR</a>
+				</div>
+				<div sec:authorize="hasRole('ROLE_ADMIN')" class="publication-menu-option">
+					<a th:href="@{/publicacion/eliminar/__${publication.id}__}" class="delete">ELIMINAR</a>
+				</div>
+				<div sec:authorize="hasRole('ROLE_USER')" th:if="${session.user.email == publication.usuario.email}" class="publication-menu-option">
+					<a th:href="@{/publicacion/eliminar/__${publication.id}__}" class="delete">ELIMINAR</a>
+				</div>
+				<div class="publication-menu-option">
+					<a th:href="@{/perfil/__${publication.usuario.nick}__}">VER AUTOR</a>
+				</div>
+				<div class="publication-menu-option">
+					<a onclick="viewPublicationMenu()">CANCELAR</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+ <script src="/scripts/viewPublication.js"></script>
+  <script src="/scripts/fragments.js"></script>
+  <script
+    defer
+    src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+    integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
+    crossorigin="anonymous"
+  ></script>
+</html>

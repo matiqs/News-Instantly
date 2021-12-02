@@ -1,0 +1,44 @@
+<div sec:authorize="isAuthenticated()">
+	<div class="create-news-container">
+		<div class="create-news-profile">
+			<div class="profile-avatar create-news-profile-avatar">
+				<img th:if="${session.user.imagenPerfil == null}"
+					src="/images/avatar-default.png" alt="" class="avatar" />
+				<img th:if="${session.user.imagenPerfil != null}"
+					th:src="${'/imagen/perfil/' + session.user.email}" alt=""
+					class="avatar" />
+			</div>
+			<p class="create-news-text"
+				th:text="'¿Que esperas para subir tu noticia, ' + ${session.user.nick} + '?'"></p>
+		</div>
+		<button class="post-btn" type="button" data-bs-toggle="collapse"
+			data-bs-target="#collapseExample" aria-expanded="false"
+			aria-controls="collapseExample" onclick="showCreateNews()">
+			PUBLICAR</button>
+	</div>
+	<div class="create-news hidden">
+		<div class="create-new">
+			<form th:action="@{/publicacion/publicar}" method="POST"
+				enctype="multipart/form-data" class="new-form">
+				<div class="new-header">
+					<input type="text" class="new-title new-box" name="title"
+						placeholder="Titulo noticia" autocomplete="off" th:value="${title}"/>
+					<textarea type="text" class="new-epigraphy new-box"
+						name="epigraphy" placeholder="Epigrafe noticia" th:text="${epigraphy}"></textarea>
+				</div>
+				<div class="new-body">
+					<textarea type="text" class="new-description new-box" name="publicationText"
+						rows="10" cols="40" placeholder="Texto noticia" th:text="${publicationText}"></textarea>
+					<input id="file-upload" type="file" class="new-file new-box"
+						name="file"/> <input type="hidden"
+						th:value="${session.user.email}" name="email">
+				</div>
+				<div class="new-footer">
+					<button type="button" class="back-btn" onclick="showCreateNews()">
+						CANCELAR</button>
+					<button type="submit" class="upload-btn">SUBIR NOTICIA</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil</title>
+    <link rel="stylesheet" href="/css/perfil.css" />
+    <link rel="stylesheet" href="/css/header.css" /> 
+    <link rel="stylesheet" href="/css/post.css" /> 
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Krub:wght@200;300;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@1,400;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+  	<!--NAVBAR-->	
+    <header th:replace="fragments/header :: header"></header>
+    <!--  perfil -->
+    <section class="user-profile-container">
+      <div class="user-profile">
+        <img
+          class="user-profile-cover"
+          src="https://pbs.twimg.com/media/DuAjJRxXQAI9tjV.jpg"
+          alt=""
+        />
+        <div class="user-profile-avatar">
+          <img class="user-avatar" src="https://dragonball.blog/wp-content/uploads/2020/05/vegeta-ssj-para-colorear.jpg" alt="" />
+          <p class="username">Nombre de usuario</p>
+          <p class="username-email">emailusuario@outlook.es</p>
+        </div>
+        <div class="edit-profile-container">
+          <button type="button" class="edit-profile-btn">EDITAR PERFIL</button>
+        </div>
+      </div>
+    </section>
+    <section class="profile-navbar-container">
+      <nav class="profile-navbar"></nav>
+    </section>
+    <!--PUBLICAR-->
+    <div class="main-container">
+    	<main>
+    		<div th:replace="fragments/post :: div"></div>
+    	</main>
+    </div>
+  </body>
+  <script src="/scripts/fragments.js"></script>
+  <script
+    defer
+    src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+    integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
+    crossorigin="anonymous"
+  ></script>
+</html>

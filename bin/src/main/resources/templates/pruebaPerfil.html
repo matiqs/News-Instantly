@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/login.css" />
+    <link rel="shortcut icon" href="/images/logo.png" />
+    <title>Ingresar | News instantly.</title>
+  </head>
+  <body>
+    <header>
+    <h1 th:text="'Perfil de: ' + ${usuario.nick}"></h1>
+    <img th:if="${usuario.imagenPerfil != null}" th:src="${'/imagen-perfil/' + usuario.email}">
+    <img th:if="${usuario.imagenPerfil == null}" src="/images/avatar-default.png">
+    <button type="button" class="btn btn-primary"><a th:href="@{/perfil/modificar/__${usuario.email}__}">MODIFICAR</a></button>
+    </header>
+  </body>
+  <div>
+  <h1>News Instantly</h1>
+  </div>
+  <h2>Publicaciones</h2>
+  <div>
+    <table class="table">
+        <tr th:each="publication : ${publications}">
+        <td><a th:text="${publication.titulo}" th:href="@{publication/__${publication.id}__}"></a></td>
+        <td th:text="'Escrita por ' + ${publication.usuario.nick}" style="color: red;"></td>
+        <td><button type="button" class="btn btn-primary"><a th:href="@{publication/eliminar/__${publication.id}__}">X</a></button></td>
+        </tr>
+    </table>
+  </div>
+</html>

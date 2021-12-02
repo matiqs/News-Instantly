@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/scrollbar.css">
+    <link rel="stylesheet" href="/css/register.css" />
+    <link rel="stylesheet" href="/css/changePassword.css" />
+    <!-- <link rel="stylesheet" href="/src/main/resources/static/css/register.css" /> -->
+    <link rel="shortcut icon" href="/images/logo.png" />
+    <!-- <link rel="shortcut icon" href="/src/main/resources/static/images/logo.png" /> -->
+    <title>Recuperar contraseña | News instantly.</title>
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Krub:wght@200;300;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@1,400;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+	<div class="change-pass-container">
+		
+		<div class="change-pass-form-container">
+			<div class="change-pass-text">
+	        	 <p>Ingresa una nueva contraseña</p>
+			</div>
+	        <form class="change-pass-form" th:action="@{/recuperar-contraseña/__${token}__}" method="POST"> 
+	              <label for="">Nueva contraseña</label>
+	              <input
+	                type="password"
+	                name="password"
+	                pattern="[A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9]*"
+	                title="La contraseña debe contener letras y
+	              al menos un numero"
+	                required
+	                placeholder="Contraseña"
+	              />
+	              <label for="">Repetir contraseña</label>
+	              <input
+	                type="password"
+	                name="confirmPassword"
+	                placeholder="Repetir contraseña"
+	              />
+	            <button type="submit" class="change-pass-btn">
+	              cambiar contraseña
+	            </button>
+	        </form>
+		</div>        
+	</div>   
+  </body>
+  </html>

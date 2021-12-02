@@ -1,0 +1,55 @@
+:root {
+  /* PALETA DE COLORES */
+  --negro: #111;
+  --blanco: #fff;
+  --gris_placeholder: #aaa;
+  --gris_suave0: #ccc;
+  --gris_suave1: #ddd;
+  --gris_suave2: #eee;
+  --gris_letra: #666;
+  --gris_barra: #333;
+  --rojo: #ec3535;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.profile-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  cursor: pointer;
+  background: #333;
+}
+
+.avatar {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 1px;
+}
+
+body {
+  background: rgb(49, 49, 49);
+  font-family: "Roboto", sans-serif;
+}
+
+main {
+  margin-top: 82px;
+}
+
+
+
+/* ================== PIE DE PAGINA =================== */
+.footer {
+  background: #a5a5a5;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+

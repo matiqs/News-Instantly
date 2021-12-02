@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Krub", serif;
+  text-align: justify;
+}
+
+/* =============
+   global styles
+   ============= */
+
+h1{
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+h2{
+  margin: 10px 0;
+  text-align: left;
+}
+
+/* =============
+    background
+   ============= */
+
+.politicas-background {
+  background-image: url("/images/background-login.jpg");
+  background-size: cover;
+  background-position:top;
+  height: 100%;
+  width: 100%;
+}
+
+/* =============
+     container
+   ============= */
+
+.politicas-container {
+  position: sticky;
+  margin: 5% 15%;
+  background: rgba(238, 238, 238, 0.76);
+  padding: 20px 30px;
+  border-radius: 20px;
+}
+
+.items{
+  margin-left: 20px;
+}
+
+/* =============
+   media queries
+   ============= */
+
+@media (max-width: 1200px) {
+  .politicas-container{
+    margin: 5% 5%;
+  }
+  .politicas-background{
+    background-repeat: space;
+  }
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/scrollbar.css">
+    <link rel="stylesheet" href="/css/login.css" />  <!-- /src/main/resources/static/css/login.css -->
+    <link rel="shortcut icon" href="/images/logo.png" /> <!-- /src/main/resources/static/images/logo.png -->
+    <title>Ingresar | News instantly.</title>
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@1,400;1,600;1,700&display=swap"rel="stylesheet"/><!--Font de: TITULO-->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet"/>
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="login-form-bg"></div>
+      <div class="login-form-container">
+        <div class="login-form-logo">
+          <img src="/images/logo.png" alt="" class="logo" /> <!-- /src/main/resources/static/images/logo.png -->
+          <h1 class="title">News <span>Instantly.</span></h1>
+        </div>
+        <div th:if="${error != null}" class="error-container">
+          <i class="fas fa-exclamation-triangle"></i>
+          <p th:text="${error}" class="error"></p>
+        </div>
+        <div th:if="${success != null}" class="succes-container">
+          <i class="fas fa-check-circle"></i>
+          <p th:text="${success}" class="succes"></p>
+        </div>
+        <form th:action="@{/logincheck}" class="login-form" method="POST">
+          <div class="login-form-input">
+            <label for="">Email</label>
+            <input type="text" placeholder="Email de usuario" name="email" />
+          </div>
+          <div class="login-form-input">
+            <label for="">Contraseña</label>
+            <input
+              type="password"
+              name="password"
+              pattern="[A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9]*"
+              title="La contraseña es incorrecta"
+              required
+              placeholder="Contraseña"
+            />
+          </div>
+          <div class="login-form-input">
+            <button type="submit" class="login-btn">Ingresar</button>
+          </div>
+          <a class="login-form-link" onclick="viewRecoverPass()"
+            >¿Olvidaste tu contraseña?</a
+          >
+        </form>
+        <div class="create-account">
+          <p>¿Aun no te has registrado?</p>
+          <div class="login-form-input">
+          <a th:href="@{/register}" class="login-btn-link">
+            <button type="button" class="login-btn register-btn">
+               Registrarme
+            </button>
+           </a>
+          </div>
+        </div>
+      </div>
+    </div>
+   <div class="recover-password-container hidden">
+    	<div onclick="viewRecoverPass()" class="recover-password-bg"></div>
+    	<div class="recover-password">
+    		<p class="recover-password-text">RECUPERAR TU CUENTA</p>
+    		<form th:action="@{/email-recuperacion}" method="post" class="recover-password-form">
+    			<label>Introduce tu correo electrónico para buscar tu cuenta</label>
+				<input name="email" type="email" placeholder="Correo electronico"/>
+				<div class="recover-password-btn">
+					<button type="submit" class="recover-search-btn">Buscar</button>
+					<button onclick="viewRecoverPass()" class="recover-back-btn">Cancelar</button>
+				</div>
+    		</form>	
+    	</div>
+    </div>
+  </body>
+  <script src="scripts/login.js"></script>
+   <script
+    defer
+    src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+    integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
+    crossorigin="anonymous"
+  ></script>
+</html>

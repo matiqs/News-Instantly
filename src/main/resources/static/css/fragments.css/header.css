@@ -1,0 +1,153 @@
+:root {
+  /* PALETA DE COLORES */
+  --negro: #111;
+  --blanco: #fff;
+  --gris_placeholder: #aaa;
+  --gris_suave0: #ccc;
+  --gris_suave1: #ddd;
+  --gris_suave2: #eee;
+  --gris_letra: #666;
+  --gris_barra: #333;
+  --rojo: #ec3535;
+}
+
+.hidden {
+  display: none;
+}
+
+.header {
+  min-width: 100%;	
+  z-index: 50000;
+  background: #272727;
+  color: var(--blanco);
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+}
+
+.navbar-container {
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.navbar-logo-link{
+	text-decoration: none;
+	color: #fff;
+}
+
+
+.navbar-logo-container {
+  display: flex;
+  align-items: center;
+}
+.navbar-logo {
+  width: 55px;
+  padding: 5px;
+  cursor: pointer;
+  filter: drop-shadow(0 0 6px var(--gris_placeholder));
+}
+.navbar-title {
+  padding: 0 10px;
+  font-family: "Crimson Text", serif;
+  font-size: 35px;
+}
+
+
+.navbar-menu-icon{
+	margin-right: 25px;
+	font-size: 34px;
+	display:none;
+}
+
+.dropdown {
+  box-shadow: 5px 5px 5px #333;
+  border-radius: 14px;
+  background-color: #fff;
+  position: absolute;
+  width: 220px;
+  top: 82px;
+  right: 10px;
+  padding: 14px;
+  text-align: center;
+  border: 1px solid #333;
+}
+
+.dopdown-menu {
+  font-family: "Krub", sans-serif;
+  list-style: none;
+}
+
+.dopdown-icon {
+  color: #111;
+}
+
+.dropdown-menu-option {
+  font-size: 14px;
+  height: 54px;
+  width: auto;
+  margin: 4px 0px;
+  margin-left: 16px;
+  text-align: center;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.dropdown-menu-option a {
+  padding: 0 10px;
+  color: #111;
+}
+
+.dropdown-menu-option a:hover {
+  color: #666;
+}
+
+.profile-option {
+  margin-bottom: 14px;
+}
+.getout-option {
+  margin-top: 14px;
+}
+.getout-option a:hover {
+  color: #ec3535;
+}
+
+.close-dopdown {
+  position: absolute;
+  top: 22px;
+  right: 20px;
+  display: flex;
+  justify-content: end;
+}
+
+/*MEDIA CELULAR*/
+@media screen and (max-width:480px) {
+	.navbar-title, .navbar-profile-avatar {
+  		display:none;
+	}
+	
+	.navbar-menu-icon{
+		display: inline-block;
+	}
+	
+	.dropdown {
+		position: absolute;
+		border: none;
+		border-radius: 0px;
+		width: 100%;
+		height: 300px;
+		top: 75px;
+		right: 0;
+		text-align: center;
+    }
+	
+}
+
+
+
+
+

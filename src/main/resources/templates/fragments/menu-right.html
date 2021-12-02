@@ -1,0 +1,19 @@
+<div class="menu-right-container">
+	<div class="menu-right-content">
+		<div sec:authorize="isAuthenticated()" class="menu-publications-user">
+			<div class="menu-publications-user-header">
+				<span>MIS PUBLICACIONES</span>
+			</div>
+			<div th:each="publication : ${userPublications}" class="publications-container">
+				<div class="menu-publications-item-container">
+					<div class="menu-publications-date">
+						<p th:text="${#dates.format(publication.fechaPublicacion,'yyyy-MM-dd HH:mm') + 'hs'}"></p>
+					</div>
+					<div class="menu-publications-title">
+						<a th:href="@{/publicacion/__${publication.id}__}" th:text="${publication.titulo}"></a>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
